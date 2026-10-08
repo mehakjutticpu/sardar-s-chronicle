@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ForManoRouteImport } from './routes/for-mano'
+import { Route as ManoBotRouteImport } from './routes/mano-bot'
+import { Route as OurStoryRouteImport } from './routes/our-story'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForManoRoute = ForManoRouteImport.update({
+  id: '/for-mano',
+  path: '/for-mano',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManoBotRoute = ManoBotRouteImport.update({
+  id: '/mano-bot',
+  path: '/mano-bot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OurStoryRoute = OurStoryRouteImport.update({
+  id: '/our-story',
+  path: '/our-story',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/for-mano': typeof ForManoRoute
+  '/mano-bot': typeof ManoBotRoute
+  '/our-story': typeof OurStoryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/for-mano': typeof ForManoRoute
+  '/mano-bot': typeof ManoBotRoute
+  '/our-story': typeof OurStoryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/for-mano': typeof ForManoRoute
+  '/mano-bot': typeof ManoBotRoute
+  '/our-story': typeof OurStoryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/for-mano' | '/mano-bot' | '/our-story'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/for-mano' | '/mano-bot' | '/our-story'
+  id: '__root__' | '/' | '/for-mano' | '/mano-bot' | '/our-story'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ForManoRoute: typeof ForManoRoute
+  ManoBotRoute: typeof ManoBotRoute
+  OurStoryRoute: typeof OurStoryRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/for-mano': {
+      id: '/for-mano'
+      path: '/for-mano'
+      fullPath: '/for-mano'
+      preLoaderRoute: typeof ForManoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mano-bot': {
+      id: '/mano-bot'
+      path: '/mano-bot'
+      fullPath: '/mano-bot'
+      preLoaderRoute: typeof ManoBotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-story': {
+      id: '/our-story'
+      path: '/our-story'
+      fullPath: '/our-story'
+      preLoaderRoute: typeof OurStoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ForManoRoute: ForManoRoute,
+  ManoBotRoute: ManoBotRoute,
+  OurStoryRoute: OurStoryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
