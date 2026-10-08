@@ -6,6 +6,8 @@ export const story = {
   lastMessage: '2026-10-03T20:36:00+05:00',
   countries: 10,
   whatsapp: 'https://wa.me/923301068874',
+  botMessenger: 'https://m.me/61577647262557',
+  botGithub: 'https://github.com/rdxcpu3/RDX-MEGA-BOT',
   instagram: 'https://www.instagram.com/sardar_rdx_devil?stkn=MXE0ZDBwNnczNjRveA==',
 };
 
