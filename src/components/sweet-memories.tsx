@@ -69,7 +69,7 @@ export function SweetMemories() {
 
   return <section ref={section} className="sweet-memories" aria-labelledby="memories-title">
     <div className="memories-heading"><p className="section-kicker"><span /> DIL MEIN MEHFOOZ <span /></p><h2 id="memories-title">Sweet <em>memories.</em></h2><p>Kuch tasveerein. Beshumaar ehsaas.</p><Heart size={19} strokeWidth={1} /></div>
-    <div className="memories-grid">{memories.map((memory, index) => <figure className="memory-photo" key={memory.asset.asset_id}>
+    <div className="memories-grid">{memories.map((memory, index) => <figure className="memory-photo" key={memory.asset.url}>
       <Button variant="ghost" className="memory-image-button" onClick={() => setSelected(index)} aria-label={`Open memory: ${memory.title}`}>
         <img src={memory.asset.url} alt={memory.title} loading="lazy" width={640} height={640} />
         <span className="memory-expand"><Expand size={18} /></span>
@@ -80,7 +80,7 @@ export function SweetMemories() {
       <DialogContent className="memory-lightbox">
         <DialogTitle>{current?.title ?? 'Sweet memories'}</DialogTitle>
         <DialogDescription className="sr-only">{current?.caption}</DialogDescription>
-        {current && <img key={current.asset.asset_id} className="memory-full-image" src={current.asset.url} alt={current.title} />}
+        {current && <img key={current.asset.url} className="memory-full-image" src={current.asset.url} alt={current.title} />}
         <div className="memory-lightbox-controls">
           <Button variant="outline" size="icon" onClick={() => step(-1)} aria-label="Previous memory" title="Previous memory"><ArrowLeft /></Button>
           <p aria-live="polite">{selected === null ? 0 : selected + 1} / {memories.length}<span>{current?.caption}</span></p>
