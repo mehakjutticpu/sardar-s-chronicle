@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { Heart, Instagram, MessageCircle, ArrowUpRight, Menu, X } from 'lucide-react';
+import logoMark from '../assets/logo-monogram.png';
 import { useState, type ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { story } from '@/lib/story';
