@@ -1,8 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { BotFeature } from '@/components/story-content';
-import { storyHead } from '@/lib/story';
+import { storyHead, story } from '@/lib/story';
+import { Button } from '@/components/ui/button';
 export const Route = createFileRoute('/mano-bot')({
   head: () => storyHead('Mano Bot — Messenger & WhatsApp Bot by Sardar RDX', 'Meet Mano Bot, the Messenger and WhatsApp creation of Pakistani programmer and vibe coder Sardar RDX. Named after Mano, its creator reports users in 10 countries.', '/mano-bot'),
   component: ManoBot,
 });
-function ManoBot() { return <div className="inner-page"><div className="page-intro"><p className="eyebrow">CREATED BY SARDAR RDX</p><h1>Mano <em>Bot.</em></h1><p>Ek programmer ki mehnat. Ek mohabbat ka naam.</p></div><BotFeature full /><div className="bot-note"><p>“Pakistan ka sab se best bot” — meri apni mehnat par mera yaqeen.</p><small>Reach aur pehchaan ki details creator Sardar RDX ki apni maloomat par mabni hain.</small></div></div>; }
+function ManoBot() { return <div className="inner-page"><div className="page-intro"><p className="eyebrow">CREATED BY SARDAR RDX</p><h1>Mano <em>Bot.</em></h1><p>Ek programmer ki mehnat. Ek mohabbat ka naam.</p></div><BotFeature full /><section className="bot-note" aria-labelledby="rdx-bot"><p id="rdx-bot">RDX Mega Bot — Facebook Messenger</p><small>Bot ka naam: 🩷 MANO · Prefix: "." · 134+ commands · Mano AI chat · Owner: Sardar RDX</small><div style={{display:'flex',gap:'14px',justifyContent:'center',flexWrap:'wrap',marginTop:'22px'}}><Button asChild className="rose-button"><a href={story.botMessenger} target="_blank" rel="noopener noreferrer">Messenger par chat karo ↗</a></Button><Button asChild variant="outline" className="rose-button"><a href={story.botGithub} target="_blank" rel="noopener noreferrer">GitHub par code ↗</a></Button></div></section><div className="bot-note"><p>“Pakistan ka sab se best bot” — meri apni mehnat par mera yaqeen.</p><small>Reach aur pehchaan ki details creator Sardar RDX ki apni maloomat par mabni hain.</small></div></div>; }
