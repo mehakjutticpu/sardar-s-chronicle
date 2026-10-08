@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { Heart, Instagram, MessageCircle, ArrowUpRight, Menu, X } from 'lucide-react';
+import logoMark from '../assets/logo-monogram.png';
 import { useState, type ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { story } from '@/lib/story';
@@ -9,7 +10,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   return <>
     <header className="site-header">
-      <Link to="/" className="wordmark" aria-label="Sardar and Mano home">S<span className="wordmark-heart">♡</span>M<span className="wordmark-caption">A STORY, STILL BEING WRITTEN</span></Link>
+      <Link to="/" className="wordmark" aria-label="Sardar and Mano home"><img src={logoMark} alt="Mano & Sardar logo" width={58} height={58} loading="lazy" /><span className="wordmark-caption">A STORY, STILL BEING WRITTEN</span></Link>
       <nav className={`site-nav ${open ? 'is-open' : ''}`} aria-label="Main navigation">{links.map(link => <Link key={link.to} to={link.to} onClick={() => setOpen(false)} activeOptions={{ exact: true }} activeProps={{ className: 'active' }}>{link.label}</Link>)}</nav>
       <Button asChild variant="outline" className="header-cta"><Link to="/for-mano"><Heart /> A letter for you <ArrowUpRight /></Link></Button>
       <Button variant="ghost" size="icon" className="menu-toggle" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
