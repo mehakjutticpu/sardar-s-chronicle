@@ -2,16 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, Heart, Expand } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
-import callTogether from '@/assets/memory-01.jpeg.asset.json';
-import groupCall from '@/assets/memory-02.jpeg.asset.json';
-import sardarFlowers from '@/assets/memory-03.jpeg.asset.json';
-import manoFlowers from '@/assets/memory-04.jpeg.asset.json';
-import profiles from '@/assets/memory-05.jpeg.asset.json';
-import stories from '@/assets/memory-06.jpeg.asset.json';
-import manoBlue from '@/assets/memory-07.jpeg.asset.json';
-import sardarBlue from '@/assets/memory-08.jpeg.asset.json';
-import sardar from '@/assets/memory-09.jpeg.asset.json';
-import mano from '@/assets/memory-10.jpeg.asset.json';
+const callTogether = { url: '/memories/memory-01.jpeg' };
+const groupCall = { url: '/memories/memory-02.jpeg' };
+const sardarFlowers = { url: '/memories/memory-03.jpeg' };
+const manoFlowers = { url: '/memories/memory-04.jpeg' };
+const profiles = { url: '/memories/memory-05.jpeg' };
+const stories = { url: '/memories/memory-06.jpeg' };
+const manoBlue = { url: '/memories/memory-07.jpeg' };
+const sardarBlue = { url: '/memories/memory-08.jpeg' };
+const sardar = { url: '/memories/memory-09.jpeg' };
+const mano = { url: '/memories/memory-10.jpeg' };
 
 const memories = [
   { asset: sardar, title: 'Sardar', caption: 'Shah ke naam se.' },
@@ -24,6 +24,16 @@ const memories = [
   { asset: stories, title: 'Chhoti chhoti yaadein', caption: 'Woh purane din.' },
   { asset: groupCall, title: 'Call ki yaadein', caption: 'Saath guzre lamhe.' },
   { asset: callTogether, title: 'Ek aur yaad', caption: 'Dil ke qareeb.' },
+  { asset: { url: '/memories/memory-11.jpeg' }, title: 'Sardar', caption: 'Meri zindagi ka khoobsurat ehsaas.' },
+  { asset: { url: '/memories/memory-12.jpeg' }, title: 'Mano', caption: 'Aap ho jana.' },
+  { asset: { url: '/memories/memory-13.jpeg' }, title: 'Sardar & Mano', caption: 'Haath mein haath.' },
+  { asset: { url: '/memories/memory-14.jpeg' }, title: 'Group call', caption: 'Sab saath saath.' },
+  { asset: { url: '/memories/memory-15.jpeg' }, title: 'Profiles', caption: 'Do naam, ek kahani.' },
+  { asset: { url: '/memories/memory-16.jpeg' }, title: 'Call par', caption: 'Baatein hi baatein.' },
+  { asset: { url: '/memories/memory-17.jpeg' }, title: 'Lambi call', caption: '58 minute ki yaad.' },
+  { asset: { url: '/memories/memory-18.jpeg' }, title: 'Chat ki yaadein', caption: 'Hansi aur shararat.' },
+  { asset: { url: '/memories/memory-19.jpeg' }, title: 'Mano ka profile', caption: 'Angel & Devil.' },
+  { asset: { url: '/memories/memory-20.jpeg' }, title: 'Sardar ka profile', caption: 'Fadebaz Sardar.' },
 ];
 
 export function SweetMemories() {
