@@ -4,6 +4,7 @@ import logoMark from '../assets/logo-monogram.png';
 import { useState, type ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { story } from '@/lib/story';
+import { BackgroundMusic } from '@/components/background-music';
 
 const links = [{ to: '/', label: 'Home' }, { to: '/our-story', label: 'Our Story' }, { to: '/for-mano', label: 'For Mano' }, { to: '/mano-bot', label: 'Mano Bot' }] as const;
 export function SiteShell({ children }: { children: ReactNode }) {
@@ -18,5 +19,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <main>{children}</main>
     <footer className="site-footer"><Link to="/" className="footer-brand">Sardar <span>&</span> Mano</Link><p>Har kahani ka anjaam nahi hota. Kuch mohabbatein hamesha rehti hain.</p><div className="footer-links"><a href={story.instagram} target="_blank" rel="noopener noreferrer" aria-label="Sardar RDX on Instagram"><Instagram size={18} /></a><a href={story.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Message Sardar RDX on WhatsApp"><MessageCircle size={18} /></a></div><small>Written with love, by Shah. <Heart size={11} /></small></footer>
     <Button asChild className="floating-whatsapp" size="icon"><a href={story.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Sardar RDX" title="WhatsApp Sardar RDX"><MessageCircle /></a></Button>
+    <BackgroundMusic />
   </>;
 }
