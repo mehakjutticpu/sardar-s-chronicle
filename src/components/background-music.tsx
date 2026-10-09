@@ -28,7 +28,7 @@ export function BackgroundMusic() {
 
   return <>
     <audio ref={ref} src="/music/background.mp3" loop preload="auto" />
-    <Button variant="outline" size="icon" onClick={toggle} aria-label={playing ? 'Music band karo' : 'Music chalao'} title={playing ? 'Music band karo' : 'Music chalao'} style={{ position: 'fixed', left: 18, bottom: 18, zIndex: 60, borderRadius: 999 }}>
+    <Button variant="outline" size="icon" className="music-toggle" onClick={toggle} aria-label={playing ? 'Music band karo' : 'Music chalao'} title={playing ? 'Music band karo' : 'Music chalao'}>
       {playing ? <Volume2 /> : <VolumeX />}
     </Button>
   </>;
