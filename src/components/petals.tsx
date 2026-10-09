@@ -12,9 +12,10 @@ function Decorations({ rose, blush, reduced }: { rose: string; blush: string; re
     petal.moveTo(0, -.28); petal.bezierCurveTo(-.42, 0, -.3, .47, .04, .36); petal.bezierCurveTo(.38, .32, .36, -.08, 0, -.28);
     const heart = new THREE.Shape();
     heart.moveTo(0, -.35); heart.bezierCurveTo(-.65, .05, -.5, .65, 0, .3); heart.bezierCurveTo(.5, .65, .65, .05, 0, -.35);
-    return [petal, heart].map(shape => new THREE.ExtrudeGeometry(shape, { depth: .05, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: .035, bevelThickness: .035, curveSegments: 10 }));
+    const extrude = (shape: THREE.Shape) => new THREE.ExtrudeGeometry(shape, { depth: .05, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: .035, bevelThickness: .035, curveSegments: 10 });
+    return { petal: extrude(petal), heart: extrude(heart) };
   }, []);
-  useEffect(() => () => geometries.forEach(geometry => geometry.dispose()), [geometries]);
+  useEffect(() => () => { geometries.petal.dispose(); geometries.heart.dispose(); }, [geometries]);
   useFrame((_, delta) => {
     if (!reduced) elapsed.current += Math.min(delta, .05);
     items.current.forEach((mesh, index) => {
@@ -22,8 +23,9 @@ function Decorations({ rose, blush, reduced }: { rose: string; blush: string; re
       const time = elapsed.current;
       const phase = index * 2.399;
       // Edge lanes keep decorations inside narrow screens without covering the story.
-      const lane = index % 2 === 0 ? -.43 : .43;
-      mesh.position.x = viewport.width * (lane + Math.sin(time * .22 + phase) * .035);
+      const lane = index % 2 === 0 ? -.465 : .465;
+      mesh.position.x = viewport.width * (lane + Math.sin(time * .22 + phase) * .012);
+      mesh.scale.setScalar(viewport.width * (index % 4 === 0 ? .035 : .025));
       mesh.position.y = viewport.height * (.5 - ((index / 24 + time * (.016 + (index % 3) * .003)) % 1));
       mesh.rotation.set(Math.sin(time * .4 + phase) * .35, Math.sin(time * .3 + phase) * .7, Math.sin(time * .2 + phase) * .45);
     });
@@ -32,7 +34,7 @@ function Decorations({ rose, blush, reduced }: { rose: string; blush: string; re
     <ambientLight intensity={1.5} />
     <directionalLight position={[2, 3, 5]} intensity={2.2} />
     <Environment resolution={64}><Lightformer intensity={2} color={blush} position={[0, 3, 4]} scale={[8, 8, 1]} /><Lightformer intensity={1.5} color={rose} position={[-4, 0, 2]} rotation-y={Math.PI / 3} scale={[5, 5, 1]} /></Environment>
-    {Array.from({ length: 24 }, (_, index) => <mesh key={index} ref={mesh => { items.current[index] = mesh; }} geometry={geometries[index % 4 === 0 ? 1 : 0]} scale={index % 4 === 0 ? .6 : .4 + (index % 3) * .08}>
+    {Array.from({ length: 24 }, (_, index) => <mesh key={index} ref={mesh => { items.current[index] = mesh; }} geometry={index % 4 === 0 ? geometries.heart : geometries.petal}>
       <meshStandardMaterial color={index % 3 === 0 ? blush : rose} roughness={index % 2 === 0 ? .32 : .6} metalness={.22} side={THREE.DoubleSide} />
     </mesh>)}
   </>;
