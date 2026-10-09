@@ -174,7 +174,7 @@ em { color: var(--rose-soft); font-weight: 400; }
 .hero { position: relative; min-height: 710px; height: min(790px, calc(100svh - 94px)); overflow: hidden; }
 .hero-roses { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; object-position: center; }
 .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg,var(--background) 0%,transparent 65%),linear-gradient(0deg,var(--background),transparent 20%); pointer-events: none; }
-.petal-scene { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: .55; }
+.petal-scene { position: fixed; inset: 75px 0 0; z-index: 5; pointer-events: none; opacity: .78; }
 .petal-scene canvas { display: block; width: 100%; height: 100%; }
 .hero-content { position: relative; z-index: 3; padding: 86px 8.5% 75px; max-width: 830px; animation: arrive 1.2s ease both; }
 .eyebrow { font-size: 9px; color: var(--rose-soft); font-weight: 500; line-height: 1.8; }
@@ -314,3 +314,62 @@ em { color: var(--rose-soft); font-weight: 400; }
 .inner-page .sweet-memories { padding: 65px 0 45px; }
 @keyframes memory-arrive { from { opacity: .3; translate: 0 35px; } to { opacity: 1; translate: 0 0; } }
 @media(max-width:600px) { .sweet-memories { padding: 48px 6%; } .memories-heading h2 { font-size: 40px; } .memories-grid { gap: 16px 12px; } .memory-photo { padding: 5px; } .memory-photo figcaption { padding: 12px 2px 5px; } .memory-photo figcaption > span { font-size: 20px; } .memory-photo figcaption small { font-size: 8px; line-height: 1.6; } .memory-expand { right: 7px; bottom: 7px; width: 28px; height: 28px; } .memory-expand svg { width: 14px; } .memory-lightbox { padding: 18px; } }
+
+.social-contacts { display: flex; align-items: center; gap: 10px; }
+.social-contacts a { height: 36px; font-size: 11px; gap: 7px; padding: 0 12px; }
+.contact-whatsapp { background: var(--whatsapp); color: var(--primary-foreground); }
+.contact-whatsapp:hover { background: var(--whatsapp); filter: brightness(1.1); }
+.contact-instagram { color: var(--rose-soft); background: transparent; }
+.social-bottom { margin: 24px 0; }
+.music-toggle { position: fixed; left: 18px; bottom: 18px; z-index: 60; width: 34px; height: 34px; border-radius: 50%; background: var(--background); }
+.music-toggle svg { width: 16px; height: 16px; }
+.petal-fallback { position: absolute; top: 20%; right: 5%; color: var(--rose-soft); font-size: 40px; animation: bob 4s ease-in-out infinite; }
+.love-notes { padding: 65px 8.5%; border-bottom: 1px solid var(--border); }
+.love-notes > h2 { text-align: center; font-size: 52px; margin: 18px 0 24px; }
+.caption-stage { max-width: 850px; margin: auto; text-align: center; }
+.caption-heart { margin: 0 auto 22px; width: 30px; height: 30px; color: var(--rose-soft); animation: love-beat 3s ease-in-out infinite; }
+.love-caption { margin: 0; min-height: 200px; max-height: 350px; overflow-y: auto; scrollbar-width: thin; font-family: var(--font-display); font-size: 27px; line-height: 1.9; overflow-wrap: anywhere; padding: 18px 20px; color: var(--foreground); animation: caption-arrive .8s ease both; }
+.caption-pages { display: flex; gap: 2px; justify-content: center; margin: 20px 0 45px; }
+.caption-pages button { width: 26px; height: 26px; padding: 8px; }
+.caption-pages span { width: 5px; height: 5px; border-radius: 50%; background: var(--muted-foreground); }
+.caption-pages [aria-pressed=true] span { background: var(--rose-soft); width: 9px; }
+.sorry-heading { max-width: 780px; margin: 0 auto 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.sorry-heading h3 { font-size: 38px; margin-top: 5px; }
+.sorry-controls { display: flex; gap: 12px; align-items: center; }
+.sorry-controls > span { font-variant-numeric: tabular-nums; color: var(--muted-foreground); font-size: 10px; }
+.sorry-scroll { height: 380px; overflow-y: auto; overscroll-behavior-y: contain; max-width: 780px; margin: auto; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); scrollbar-width: thin; scrollbar-color: var(--rose-soft) var(--background); }
+.sorry-scroll:focus-visible { outline: 1px solid var(--ring); outline-offset: 5px; }
+.sorry-scroll ol { list-style: none; margin: 0; padding: 0; }
+.sorry-row { height: 76px; display: grid; grid-template-columns: 50px 1fr 24px; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); padding: 0 24px; }
+.sorry-number { font-family: var(--font-sans); font-size: 9px; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+.sorry-word { font-family: var(--font-display); font-size: 37px; text-align: center; }
+.sorry-row > svg { color: var(--rose-soft); }
+.sorry-script .sorry-word,.sorry-italic .sorry-word { font-style: italic; }
+.sorry-outline .sorry-word { color: transparent; -webkit-text-stroke: 1px var(--rose-soft); }
+.sorry-bold .sorry-word { font-family: var(--font-sans); font-size: 28px; font-weight: 700; }
+.sorry-spaced .sorry-word { text-transform: uppercase; font-size: 30px; }
+.sorry-soft .sorry-word { color: var(--rose-soft); }
+.sorry-smallcaps .sorry-word { font-variant: small-caps; }
+.sorry-signature { text-align: center; color: var(--muted-foreground); font-size: 11px; margin-top: 22px; }
+.sorry-signature span { display: block; font-family: var(--font-display); font-style: italic; color: var(--rose-soft); font-size: 23px; margin-top: 10px; }
+@keyframes love-beat { 50% { transform: scale(1.14) rotateY(20deg); } }
+@keyframes caption-arrive { from { opacity: 0; transform: perspective(900px) rotateX(8deg) translateY(12px); } to { opacity: 1; transform: perspective(900px) rotateX(0) translateY(0); } }
+@media(max-width:1100px) { .site-header { padding-left: 4%; padding-right: 4%; } .site-nav { gap: 18px; } .wordmark-caption { display: none; } }
+@media(max-width:600px) {
+  .social-top { margin-left: auto; margin-right: 7px; gap: 5px; }
+  .social-top a { padding: 0 7px; height: 33px; font-size: 9px; gap: 4px; }
+  .social-top svg { width: 13px; height: 13px; }
+  .site-header { padding: 0 4%; }
+  .wordmark img { width: 48px; height: 48px; }
+  .petal-scene { opacity: .85; }
+  .love-notes { padding: 48px 7%; }
+  .love-notes > h2 { font-size: 39px; }
+  .love-caption { font-size: 23px; min-height: 260px; padding: 12px 8px; }
+  .sorry-heading h3 { font-size: 29px; }
+  .sorry-heading .eyebrow { font-size: 7px; }
+  .sorry-controls { gap: 7px; }
+  .sorry-controls > span { font-size: 8px; }
+  .sorry-row { padding: 0 12px; grid-template-columns: 32px 1fr 18px; gap: 8px; }
+  .sorry-word { font-size: 32px; }
+  .sorry-bold .sorry-word { font-size: 24px; }
+}
