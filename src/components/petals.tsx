@@ -1,54 +1,60 @@
-import { useEffect, useRef } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Environment, Lightformer } from '@react-three/drei';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
+function Decorations({ rose, blush, reduced }: { rose: string; blush: string; reduced: boolean }) {
+  const { viewport } = useThree();
+  const items = useRef<(THREE.Mesh | null)[]>([]);
+  const elapsed = useRef(0);
+  const geometries = useMemo(() => {
+    const petal = new THREE.Shape();
+    petal.moveTo(0, -.28); petal.bezierCurveTo(-.42, 0, -.3, .47, .04, .36); petal.bezierCurveTo(.38, .32, .36, -.08, 0, -.28);
+    const heart = new THREE.Shape();
+    heart.moveTo(0, -.35); heart.bezierCurveTo(-.65, .05, -.5, .65, 0, .3); heart.bezierCurveTo(.5, .65, .65, .05, 0, -.35);
+    return [petal, heart].map(shape => new THREE.ExtrudeGeometry(shape, { depth: .05, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: .035, bevelThickness: .035, curveSegments: 10 }));
+  }, []);
+  useEffect(() => () => geometries.forEach(geometry => geometry.dispose()), [geometries]);
+  useFrame((_, delta) => {
+    if (!reduced) elapsed.current += Math.min(delta, .05);
+    items.current.forEach((mesh, index) => {
+      if (!mesh) return;
+      const time = elapsed.current;
+      const phase = index * 2.399;
+      // Edge lanes keep decorations inside narrow screens without covering the story.
+      const lane = index % 2 === 0 ? -.43 : .43;
+      mesh.position.x = viewport.width * (lane + Math.sin(time * .22 + phase) * .035);
+      mesh.position.y = viewport.height * (.5 - ((index / 24 + time * (.016 + (index % 3) * .003)) % 1));
+      mesh.rotation.set(Math.sin(time * .4 + phase) * .35, Math.sin(time * .3 + phase) * .7, Math.sin(time * .2 + phase) * .45);
+    });
+  });
+  return <>
+    <ambientLight intensity={1.5} />
+    <directionalLight position={[2, 3, 5]} intensity={2.2} />
+    <Environment resolution={64}><Lightformer intensity={2} color={blush} position={[0, 3, 4]} scale={[8, 8, 1]} /><Lightformer intensity={1.5} color={rose} position={[-4, 0, 2]} rotation-y={Math.PI / 3} scale={[5, 5, 1]} /></Environment>
+    {Array.from({ length: 24 }, (_, index) => <mesh key={index} ref={mesh => { items.current[index] = mesh; }} geometry={geometries[index % 4 === 0 ? 1 : 0]} scale={index % 4 === 0 ? .6 : .4 + (index % 3) * .08}>
+      <meshStandardMaterial color={index % 3 === 0 ? blush : rose} roughness={index % 2 === 0 ? .32 : .6} metalness={.22} side={THREE.DoubleSide} />
+    </mesh>)}
+  </>;
+}
 export default function Petals() {
   const host = useRef<HTMLDivElement>(null);
+  const [palette, setPalette] = useState<{ rose: string; blush: string; reduced: boolean } | null>(null);
   useEffect(() => {
-    const element = host.current;
-    if (!element) return;
-    let renderer: THREE.WebGLRenderer;
-    try { renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); } catch { return; }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    element.appendChild(renderer.domElement);
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-    camera.position.z = 12;
-    const styles = getComputedStyle(element);
-    const material = new THREE.MeshStandardMaterial({ color: new THREE.Color(styles.getPropertyValue('--petal-color').trim()), roughness: 0.48, metalness: 0.15, side: THREE.DoubleSide });
-    const shape = new THREE.Shape();
-    shape.moveTo(0, -0.28);
-    shape.bezierCurveTo(-0.42, 0, -0.3, 0.47, 0.04, 0.36);
-    shape.bezierCurveTo(0.38, 0.32, 0.36, -0.08, 0, -0.28);
-    const geometry = new THREE.ExtrudeGeometry(shape, { depth: 0.012, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: 0.025, bevelThickness: 0.025 });
-    const petals = Array.from({ length: 16 }, (_, i) => {
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.set(Math.sin(i * 5.7) * 8, Math.cos(i * 3.1) * 5, -i % 4);
-      mesh.scale.setScalar(0.32 + (i % 4) * 0.12);
-      scene.add(mesh);
-      return mesh;
-    });
-    scene.add(new THREE.AmbientLight(0xffffff, 1.6));
-    const light = new THREE.DirectionalLight(0xffffff, 3);
-    light.position.set(2, 4, 5); scene.add(light);
-    const resize = () => { renderer.setSize(element.clientWidth, element.clientHeight); camera.aspect = element.clientWidth / element.clientHeight; camera.updateProjectionMatrix(); };
-    resize();
-    const observer = new ResizeObserver(resize); observer.observe(element);
-    const pointer = { x: 0, y: 0 };
-    const move = (event: PointerEvent) => { pointer.x = event.clientX / window.innerWidth - 0.5; pointer.y = event.clientY / window.innerHeight - 0.5; };
-    window.addEventListener('pointermove', move);
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let frame = 0;
-    const animate = (time: number) => {
-      petals.forEach((petal, i) => {
-        if (!reduced) { petal.rotation.set(time * 0.00012 + i, time * 0.0002 + i, Math.sin(time * 0.0003 + i)); petal.position.y = ((5 + Math.cos(i * 3.1) * 5 - time * (0.00011 + i * 0.000004)) % 10 + 10) % 10 - 5; }
-      });
-      camera.position.x += (pointer.x * 0.35 - camera.position.x) * 0.02;
-      camera.position.y += (-pointer.y * 0.25 - camera.position.y) * 0.02;
-      renderer.render(scene, camera);
-      if (!reduced) frame = requestAnimationFrame(animate);
+    if (!host.current) return;
+    const css = getComputedStyle(host.current);
+    const convert = (token: string) => {
+      const canvas = document.createElement('canvas'); canvas.width = canvas.height = 1;
+      const context = canvas.getContext('2d');
+      if (!context) return css.getPropertyValue('--petal-color').trim();
+      context.fillStyle = css.getPropertyValue(token).trim(); context.fillRect(0, 0, 1, 1);
+      const [r, g, b] = context.getImageData(0, 0, 1, 1).data;
+      return `rgb(${r},${g},${b})`;
     };
-    frame = requestAnimationFrame(animate);
-    return () => { cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener('pointermove', move); geometry.dispose(); material.dispose(); renderer.dispose(); renderer.domElement.remove(); };
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setPalette({ rose: convert('--primary'), blush: convert('--rose-soft'), reduced: motion.matches });
+    update(); motion.addEventListener('change', update);
+    return () => motion.removeEventListener('change', update);
   }, []);
-  return <div ref={host} className="petal-scene" aria-hidden="true" />;
+  return <div ref={host} className="petal-scene" aria-hidden="true">{palette && <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 10], fov: 45 }} gl={{ alpha: true, antialias: true }} frameloop={palette.reduced ? 'demand' : 'always'} fallback={<span className="petal-fallback">♡</span>}><Decorations {...palette} /></Canvas>}</div>;
 }
