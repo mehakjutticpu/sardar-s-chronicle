@@ -1,4 +1,6 @@
 # Roadmap
+- [ ] Fix audible song playback and add Play Song to the main menu.
+- [ ] Verify all tracks use publicly reachable URLs outside Lovable, including Vercel.
 - [x] Speed up captions and add swipe/previous/next controls.
 - [x] Add selectable uploaded music with playback, seek, volume, and repeat controls.
 - [x] Give all 1000 apologies distinct emoji combinations and alternating font styles; verify.
