@@ -13,5 +13,6 @@
 - Keep the decorative Three.js scene dynamically imported behind ClientOnly; all story text remains server-rendered for accessibility and search crawlers.
 - Mount one shared React Three Fiber decoration layer in the site shell and position objects relative to its viewport so mobile framing and route navigation remain consistent.
 - Keep supplied caption data in a browser-safe shared module and render apologies as semantic scrollable content so both home and letter remain accessible.
+- Keep one shared audio element in the site shell with a browser-safe track catalog, so selected music continues across navigation and uploaded media uses durable asset URLs.
 - Use separate content routes for the complete story, personal letter, and bot, each with unique metadata and structured author information.
 - Keep uploaded memory photos in a shared album component using Lovable Assets pointers, so the home and story albums stay consistent without committing binaries.
