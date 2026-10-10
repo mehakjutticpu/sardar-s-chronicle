@@ -1,4 +1,7 @@
 # Roadmap
+- [x] Speed up captions and add swipe/previous/next controls.
+- [x] Add selectable uploaded music with playback, seek, volume, and repeat controls.
+- [x] Give all 1000 apologies distinct emoji combinations and alternating font styles; verify.
 - [x] Add animated supplied captions and a 1000-entry Sorry scroll list.
 - [x] Make romantic 3D decorations visible throughout the site on mobile and desktop.
 - [x] Add clearly labeled WhatsApp and Instagram contacts at top and bottom; verify layouts and interactions.

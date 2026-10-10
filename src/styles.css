@@ -327,9 +327,9 @@ em { color: var(--rose-soft); font-weight: 400; }
 .petal-fallback { position: absolute; top: 20%; right: 5%; color: var(--rose-soft); font-size: 40px; animation: bob 4s ease-in-out infinite; }
 .love-notes { padding: 65px 8.5%; border-bottom: 1px solid var(--border); }
 .love-notes > h2 { text-align: center; font-size: 52px; margin: 18px 0 24px; }
-.caption-stage { max-width: 850px; margin: auto; text-align: center; }
+.caption-stage { max-width: 850px; margin: auto; text-align: center; touch-action: pan-y; }
 .caption-heart { margin: 0 auto 22px; width: 30px; height: 30px; color: var(--rose-soft); animation: love-beat 3s ease-in-out infinite; }
-.love-caption { margin: 0; min-height: 200px; max-height: 350px; overflow-y: auto; scrollbar-width: thin; font-family: var(--font-display); font-size: 27px; line-height: 1.9; overflow-wrap: anywhere; padding: 18px 20px; color: var(--foreground); animation: caption-arrive .8s ease both; }
+.love-caption { margin: 0; height: 300px; overflow-y: auto; scrollbar-width: thin; font-family: var(--font-display); font-size: 27px; line-height: 1.9; overflow-wrap: anywhere; padding: 18px 20px; color: var(--foreground); animation: caption-arrive .3s ease both; }
 .caption-pages { display: flex; gap: 2px; justify-content: center; margin: 20px 0 45px; }
 .caption-pages button { width: 26px; height: 26px; padding: 8px; }
 .caption-pages span { width: 5px; height: 5px; border-radius: 50%; background: var(--muted-foreground); }
@@ -341,9 +341,9 @@ em { color: var(--rose-soft); font-weight: 400; }
 .sorry-scroll { height: 380px; overflow-y: auto; overscroll-behavior-y: contain; max-width: 780px; margin: auto; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); scrollbar-width: thin; scrollbar-color: var(--rose-soft) var(--background); }
 .sorry-scroll:focus-visible { outline: 1px solid var(--ring); outline-offset: 5px; }
 .sorry-scroll ol { list-style: none; margin: 0; padding: 0; }
-.sorry-row { height: 76px; display: grid; grid-template-columns: 50px 1fr 24px; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); padding: 0 24px; }
+.sorry-row { height: 76px; display: grid; grid-template-columns: 50px 1fr; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); padding: 0 24px; }
 .sorry-number { font-family: var(--font-sans); font-size: 9px; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
-.sorry-word { font-family: var(--font-display); font-size: 37px; text-align: center; }
+.sorry-word { font-family: var(--font-display); font-size: 30px; text-align: center; }
 .sorry-row > svg { color: var(--rose-soft); }
 .sorry-script .sorry-word,.sorry-italic .sorry-word { font-style: italic; }
 .sorry-outline .sorry-word { color: transparent; -webkit-text-stroke: 1px var(--rose-soft); }
@@ -370,7 +370,33 @@ em { color: var(--rose-soft); font-weight: 400; }
   .sorry-heading .eyebrow { font-size: 7px; }
   .sorry-controls { gap: 7px; }
   .sorry-controls > span { font-size: 8px; }
-  .sorry-row { padding: 0 12px; grid-template-columns: 32px 1fr 18px; gap: 8px; }
-  .sorry-word { font-size: 32px; }
-  .sorry-bold .sorry-word { font-size: 24px; }
+  .sorry-row { padding: 0 10px; grid-template-columns: 27px 1fr; gap: 5px; }
+  .sorry-word { font-size: 24px; }
+  .sorry-bold .sorry-word { font-size: 20px; }
 }
+.caption-navigation { display: flex; justify-content: center; align-items: center; gap: 18px; margin: 18px 0 40px; }
+.caption-navigation > span { color: var(--muted-foreground); font-size: 11px; font-variant-numeric: tabular-nums; min-width: 48px; }
+.sorry-emoji { display: inline-block; margin-left: 10px; font: 20px var(--font-sans); color: var(--foreground); -webkit-text-stroke: 0; }
+.sorry-script .sorry-word { font-family: cursive; }
+.sorry-italic .sorry-word { font-family: var(--font-sans); font-weight: 500; }
+.sorry-smallcaps .sorry-word { font-family: monospace; font-size: 25px; }
+.music-dock { position: fixed; bottom: 18px; left: 18px; z-index: 60; display: flex; gap: 6px; }
+.music-dock button { width: 34px; height: 34px; border-radius: 50%; background: var(--background); }
+.music-player { position: fixed; bottom: 62px; left: 18px; width: 340px; max-width: calc(100vw - 36px); max-height: calc(100svh - 90px); overflow-y: auto; z-index: 60; background: var(--popover); border: 1px solid var(--border); border-radius: 8px; padding: 20px; box-shadow: var(--shadow-rose); }
+.player-heading { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.player-heading h2 { font-size: 26px; margin-top: 4px; }
+.now-playing { display: flex; gap: 14px; align-items: center; padding: 20px 0; color: var(--rose-soft); }
+.now-playing div { min-width: 0; }
+.now-playing strong { display: block; font-size: 13px; font-weight: 500; color: var(--foreground); }
+.now-playing span { display: block; font-size: 10px; margin-top: 6px; color: var(--muted-foreground); }
+.player-range { width: 100%; accent-color: var(--primary); cursor: pointer; }
+.player-times { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted-foreground); margin-top: 5px; font-variant-numeric: tabular-nums; }
+.player-controls { display: flex; justify-content: center; align-items: center; gap: 14px; margin: 15px 0; }
+.player-volume { display: flex; gap: 12px; align-items: center; color: var(--rose-soft); }
+.tracklist-label { display: flex; gap: 9px; align-items: center; font-size: 11px; color: var(--muted-foreground); border-top: 1px solid var(--border); padding-top: 16px; margin-top: 16px; }
+.music-tracks { list-style: none; padding: 0; margin: 10px 0 0; max-height: 215px; overflow-y: auto; scrollbar-width: thin; }
+.music-tracks button { display: grid; grid-template-columns: 22px 1fr 16px; text-align: left; width: 100%; gap: 10px; height: 38px; font-size: 11px; font-weight: 400; padding: 0 8px; }
+.music-tracks button > span:first-child { font-size: 9px; color: var(--muted-foreground); }
+.music-tracks .selected-track { background: var(--accent); color: var(--rose-soft); }
+.player-error { color: var(--rose-soft); font-size: 11px; line-height: 1.7; margin-top: 12px; }
+@media(max-width:600px) { .sorry-emoji { margin-left: 6px; font-size: 17px; } .sorry-smallcaps .sorry-word { font-size: 20px; } .sorry-spaced .sorry-word { font-size: 24px; } }
