@@ -8,9 +8,20 @@ import roses from '@/assets/roses.jpg';
 import { LoveNotes } from '@/components/love-notes';
 
 export const Route = createFileRoute('/')({
-  head: () => storyHead('Sardar RDX & Mano — A Love Story, Still Being Written', 'Sardar RDX, also known as Shah, tells his love story with Mano: their Facebook meeting on 10 September 2025, Mano Bot, and a heartfelt apology.', '/'),
+  head: () => {
+    const h = storyHead('Who is Sardar and Mano? — Sardar RDX & Mano Love Story', 'Who is Sardar and Mano? Sardar RDX (Shah) and Mano met on Facebook on 10 September 2025. Read the Sardar and Mano love story, photos, letter and Mano Bot.', '/');
+    h.meta.push({ name: 'keywords', content: 'who is sardar and mano, sardar and mano, sardar rdx, mano, sardar mano love story, mano bot, shah and mano' });
+    h.scripts.push({ type: 'application/ld+json', children: JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }) });
+    return h;
+  },
   component: Index,
 });
+const faqs: [string, string][] = [
+  ['Who is Sardar and Mano?', 'Sardar and Mano are a couple. Sardar RDX, also called Shah, and Mano met on Facebook on 10 September 2025. This website is their love story, written by Sardar for Mano.'],
+  ['Who is Sardar RDX?', 'Sardar RDX is the creator of this website and of Mano Bot, a Facebook Messenger bot. Mano gave him the name Shah.'],
+  ['Who is Mano?', 'Mano is the love of Sardar RDX. This site, its letter, its photos and Mano Bot are all dedicated to her.'],
+  ['When did Sardar and Mano meet?', 'Sardar and Mano met on Facebook on 10 September 2025.'],
+];
 function Index() {
   return <>
     <section className="hero">
@@ -22,5 +33,6 @@ function Index() {
     <section className="story-section"><div className="section-heading"><div><p className="eyebrow">THE CHAPTERS OF US</p><h2>Humari <em>kahani.</em></h2></div><Link to="/our-story" className="text-link">Every chapter <ArrowUpRight size={16} /></Link></div><StoryTimeline /></section>
     <div className="quote-band"><span>“</span><blockquote>Duniya mujhe Sardar kehti thi.<br /><em>Tumne Shah kaha, aur main tumhara ho gaya.</em></blockquote><p>— SARDAR RDX</p></div>
     <SweetMemories /><LoveNotes /><Letter /><BotFeature />
+    <section className="story-section" aria-labelledby="faq-title"><p className="eyebrow">SARDAR & MANO</p><h2 id="faq-title">Who is <em>Sardar and Mano?</em></h2>{faqs.map(([q, a]) => <div key={q} style={{ marginTop: '1.5rem' }}><h3>{q}</h3><p>{a}</p></div>)}</section>
   </>;
 }
