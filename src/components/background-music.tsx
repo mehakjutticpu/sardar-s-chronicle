@@ -45,8 +45,9 @@ export function BackgroundMusic({ ref: controlRef }: { ref?: Ref<MusicPlayerHand
     setError('');
     if (nextIndex === index) { play(); return; }
     const audio = ref.current;
-    if (!audio) return;
-    audio.src = tracks[nextIndex].url;
+    const track = tracks[nextIndex];
+    if (!audio || !track) return;
+    audio.src = track.url;
     audio.load();
     setPosition(0); setDuration(0); setPlaying(false); setIndex(nextIndex);
     // Keep play inside the user's click, including on Safari/iOS.
