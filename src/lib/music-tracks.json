@@ -7,51 +7,51 @@
   {
     "id": "track-01",
     "title": "Mano track 01",
-    "url": "/__l5e/assets-v1/047e3e19-c719-4668-b47e-2a56abdfab57/mano-track-01.mpeg"
+    "url": "/music/track-01.mp3"
   },
   {
     "id": "track-02",
     "title": "Mano track 02",
-    "url": "/__l5e/assets-v1/a71f97c2-fb0a-4c5c-b8a0-b9c8eeb7d13f/mano-track-02.mpeg"
+    "url": "/music/track-02.mp3"
   },
   {
     "id": "track-03",
     "title": "Mano track 03",
-    "url": "/__l5e/assets-v1/557fed43-6205-4003-8f28-ad537737a8a8/mano-track-03.mpeg"
+    "url": "/music/track-03.mp3"
   },
   {
     "id": "track-04",
     "title": "Mano track 04",
-    "url": "/__l5e/assets-v1/104bef79-5222-4a99-9253-055cd655e584/mano-track-04.mpeg"
+    "url": "/music/track-04.mp3"
   },
   {
     "id": "track-05",
     "title": "Mano track 05",
-    "url": "/__l5e/assets-v1/2a1b60d7-d617-41b2-adae-ba9a698bbd04/mano-track-05.mpeg"
+    "url": "/music/track-05.mp3"
   },
   {
     "id": "track-06",
     "title": "Mano track 06",
-    "url": "/__l5e/assets-v1/17fa013e-e976-41b6-b579-c3a21b1ddc1b/mano-track-06.mpeg"
+    "url": "/music/track-06.mp3"
   },
   {
     "id": "track-07",
     "title": "Mano track 07",
-    "url": "/__l5e/assets-v1/b188c7f9-eeab-4e30-87d2-cd124c37f6c7/mano-track-07.mpeg"
+    "url": "/music/track-07.mp3"
   },
   {
     "id": "track-08",
     "title": "Mano track 08",
-    "url": "/__l5e/assets-v1/9d627578-9fc2-4ac8-ae46-f1f532eba978/mano-track-08.mpeg"
+    "url": "/music/track-08.mp3"
   },
   {
     "id": "track-09",
     "title": "Mano track 09",
-    "url": "/__l5e/assets-v1/d523590f-5853-4558-9c20-f252a496292a/mano-track-09.mpeg"
+    "url": "/music/track-09.mp3"
   },
   {
     "id": "track-10",
     "title": "Mano track 10",
-    "url": "/__l5e/assets-v1/07211161-5de1-4aa4-8637-778f1322cbab/mano-track-10.mpeg"
+    "url": "/music/track-10.mp3"
   }
 ]
