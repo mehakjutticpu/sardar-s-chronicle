@@ -57,6 +57,7 @@ export function BackgroundMusic({ ref: controlRef }: { ref?: Ref<MusicPlayerHand
     const audio = ref.current;
     if (!audio) return;
     audio.volume = .75;
+    if (!audio.getAttribute('src') && tracks[0]) audio.src = tracks[0].url;
     const tryStart = () => { if (wantsPlay.current) audio.play().catch(() => {}); };
     tryStart();
     const onGesture = (event: Event) => {
@@ -72,7 +73,7 @@ export function BackgroundMusic({ ref: controlRef }: { ref?: Ref<MusicPlayerHand
     else play();
   };
   return <>
-    <audio ref={ref} src={track?.url} preload="metadata" loop={repeat} onPlaying={() => { setPlaying(true); setLoading(false); setError(''); }} onWaiting={() => setLoading(true)} onPause={() => setPlaying(false)} onTimeUpdate={event => setPosition(event.currentTarget.currentTime)} onLoadedMetadata={event => setDuration(Number.isFinite(event.currentTarget.duration) ? event.currentTarget.duration : 0)} onEnded={() => select(index + 1)} onError={() => { setLoading(false); setPlaying(false); setError('Yeh song load nahi hua. Play dobara dabayein ya doosra song chunein.'); }} />
+    <audio ref={ref} preload="metadata" loop={repeat} onPlaying={() => { setPlaying(true); setLoading(false); setError(''); }} onWaiting={() => setLoading(true)} onPause={() => setPlaying(false)} onTimeUpdate={event => setPosition(event.currentTarget.currentTime)} onLoadedMetadata={event => setDuration(Number.isFinite(event.currentTarget.duration) ? event.currentTarget.duration : 0)} onEnded={() => select(index + 1)} onError={() => { setLoading(false); setPlaying(false); setError('Yeh song load nahi hua. Play dobara dabayein ya doosra song chunein.'); }} />
     <div className="music-dock"><Button variant="outline" size="icon" aria-label="Open music player" title="Music player" onClick={() => setOpen(current => !current)}><Music2 /></Button><Button variant="outline" size="icon" aria-label={muted || volume === 0 ? 'Unmute music' : 'Mute music'} title={muted || volume === 0 ? 'Unmute music' : 'Mute music'} onClick={() => { if (muted || volume === 0) { play(); return; } setMuted(true); if (ref.current) ref.current.muted = true; }}>{muted || volume === 0 ? <VolumeX /> : <Volume2 />}</Button></div>
     {open && <section className="music-player" aria-label="Music player">
       <div className="player-heading"><div><p className="eyebrow">MANO & SARDAR</p><h2>Our soundtrack</h2></div><Button variant="ghost" size="icon" aria-label="Close music player" onClick={() => setOpen(false)}><X /></Button></div>
