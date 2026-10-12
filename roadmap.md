@@ -1,5 +1,5 @@
 # Roadmap
-- [ ] Fix audible song playback and add Play Song to the main menu.
+- [x] Fix audible song playback and add Play Song to the main menu.
 - [ ] Verify all tracks use publicly reachable URLs outside Lovable, including Vercel.
 - [x] Speed up captions and add swipe/previous/next controls.
 - [x] Add selectable uploaded music with playback, seek, volume, and repeat controls.
@@ -11,4 +11,4 @@
 - [x] Verify photos, album controls, and Google verification.
 - [x] Build the animated love story, full story, apology letter, and Mano Bot pages.
 - [x] Add WhatsApp and Instagram links and search/share metadata.
-- [x] Verify animations, pages, and mobile layout; include Vercel publishing instructions and search limitations.
+- [x] Verify animations, pages, and mobile layout; include Vercel publishing instructions and search limitations.- [x] Fix Sorry list auto-scroll stopping.
