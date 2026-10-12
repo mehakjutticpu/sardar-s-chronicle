@@ -15,7 +15,6 @@ export function LoveNotes() {
   const swipeStart = useRef<{ x: number; y: number } | null>(null);
   const changeCaption = (step: number) => setActive(previous => (previous + step + captions.length) % captions.length);
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setPlaying(false); return; }
     const timer = window.setInterval(() => setActive(previous => (previous + 1) % captions.length), 4000);
     return () => window.clearInterval(timer);
   }, [active]);
@@ -24,10 +23,16 @@ export function LoveNotes() {
     if (!element || !playing) return;
     let frame = 0;
     let previous = 0;
+    let position = element.scrollTop;
     const tick = (time: number) => {
-      if (previous) element.scrollTop += Math.min((time - previous) / 1000, .05) * 23;
+      if (previous) {
+        const max = element.scrollHeight - element.clientHeight;
+        if (Math.abs(element.scrollTop - Math.round(position)) > 2) position = element.scrollTop;
+        position += Math.min((time - previous) / 1000, .05) * 40;
+        if (max > 0 && position >= max - 1) position = 0;
+        element.scrollTop = position;
+      }
       previous = time;
-      if (element.scrollTop >= element.scrollHeight - element.clientHeight - 1) { setPlaying(false); return; }
       frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);
