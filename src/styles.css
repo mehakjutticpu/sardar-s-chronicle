@@ -23,6 +23,7 @@
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --color-rose-soft: var(--rose-soft);
   --color-whatsapp: var(--whatsapp);
+  --color-facebook: var(--facebook);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -83,6 +84,7 @@
   --accent-foreground: var(--foreground);
   --rose-soft: oklch(0.76 0.065 15);
   --whatsapp: oklch(0.6 0.13 155);
+  --facebook: oklch(0.62 0.17 262);
   --petal-color: #a94654;
   --shadow-rose: 0 8px 35px oklch(0.45 0.13 10 / 0.15);
   --destructive: oklch(0.577 0.245 27.325);
@@ -321,6 +323,9 @@ em { color: var(--rose-soft); font-weight: 400; }
 .contact-whatsapp { background: var(--whatsapp); color: var(--primary-foreground); }
 .contact-whatsapp:hover { background: var(--whatsapp); filter: brightness(1.1); }
 .contact-instagram { color: var(--rose-soft); background: transparent; }
+.contact-facebook { color: var(--facebook); background: transparent; border-color: color-mix(in oklab, var(--facebook) 45%, var(--border)); }
+.contact-facebook:hover { color: var(--facebook); background: transparent; filter: brightness(1.18); border-color: var(--facebook); }
+.social-bottom .contact-facebook { color: var(--facebook); }
 .social-bottom { margin: 24px 0; }
 .music-toggle { position: fixed; left: 18px; bottom: 18px; z-index: 60; width: 34px; height: 34px; border-radius: 50%; background: var(--background); }
 .music-toggle svg { width: 16px; height: 16px; }
