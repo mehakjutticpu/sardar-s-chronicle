@@ -9,6 +9,7 @@ export const story = {
   botMessenger: 'https://m.me/61577647262557',
   botGithub: 'https://github.com/rdxcpu3/RDX-MEGA-BOT',
   instagram: 'https://www.instagram.com/sardar_rdx_devil?stkn=MXE0ZDBwNnczNjRveA==',
+  facebook: 'https://www.facebook.com/profile.php?id=61592452007540',
 };
 
 export function storyHead(title: string, description: string, path: string) {
@@ -25,7 +26,7 @@ export function storyHead(title: string, description: string, path: string) {
     scripts: [{ type: 'application/ld+json', children: JSON.stringify({
       '@context': 'https://schema.org', '@type': 'Article', headline: title,
       description, inLanguage: 'ur-Latn',
-      author: { '@type': 'Person', name: story.name, alternateName: story.alias, sameAs: [story.instagram] },
+      author: { '@type': 'Person', name: story.name, alternateName: story.alias, sameAs: [story.instagram, story.facebook] },
       about: [{ '@type': 'Person', name: 'Sardar RDX', alternateName: 'Shah' }, { '@type': 'Person', name: 'Mano' }],
     }) }],
   };

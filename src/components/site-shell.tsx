@@ -1,5 +1,5 @@
 import { ClientOnly, Link } from '@tanstack/react-router';
-import { Heart, Instagram, MessageCircle, ArrowUpRight, Menu, X, Music2 } from 'lucide-react';
+import { Heart, Instagram, Facebook, MessageCircle, ArrowUpRight, Menu, X, Music2 } from 'lucide-react';
 import logoMark from '../assets/logo-monogram.png';
 import { lazy, Suspense, useRef, useState, type ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
@@ -9,7 +9,7 @@ import { BackgroundMusic, type MusicPlayerHandle } from '@/components/background
 const links = [{ to: '/', label: 'Home' }, { to: '/our-story', label: 'Our Story' }, { to: '/for-mano', label: 'For Mano' }, { to: '/mano-bot', label: 'Mano Bot' }] as const;
 const Petals = lazy(() => import('@/components/petals'));
 function SocialContacts({ location }: { location: 'top' | 'bottom' }) {
-  return <div className={`social-contacts social-${location}`}><Button asChild className="contact-whatsapp"><a href={story.whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={16} /> WhatsApp</a></Button><Button asChild variant="outline" className="contact-instagram"><a href={story.instagram} target="_blank" rel="noopener noreferrer"><Instagram size={16} /> Instagram</a></Button></div>;
+  return <div className={`social-contacts social-${location}`}><Button asChild className="contact-whatsapp"><a href={story.whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={16} /> <span>WhatsApp</span></a></Button><Button asChild variant="outline" className="contact-facebook"><a href={story.facebook} target="_blank" rel="noopener noreferrer"><Facebook size={16} /> <span>Facebook</span></a></Button><Button asChild variant="outline" className="contact-instagram"><a href={story.instagram} target="_blank" rel="noopener noreferrer"><Instagram size={16} /> <span>Instagram</span></a></Button></div>;
 }
 export function SiteShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
